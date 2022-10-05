@@ -1,0 +1,145 @@
+.navbar-nav li:hover > ul.dropdown-menu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform:translateY(0);
+  z-index: 1;
+}
+.navbar-nav li.nav-item .nav-link:hover {
+  color: $primary;
+}
+.nav-item {
+  ul.dropdown-menu {
+    @include transition_cubic(all, $duration:0.3s, $effect:cubic-bezier(0.26, 0.8, 0.62, 0.9), $delay:0.1s);
+    opacity: 0;
+    visibility: hidden;
+    //transition: visibility 0s, opacity 0.5s linear;
+    display: block;
+    transform:translateY(-50px);
+    z-index: -1;
+    border-radius: 3px !important;
+    border: none;
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.1);
+  }
+  .dropdown-item:hover {
+    background: none;
+    color: $primary;
+  }
+}
+.navbar-nav li.nav-item .nav-link {
+  position: relative;
+  z-index: 5;
+  background-color: inherit;
+  display: inline-block;
+}
+.dropdown-submenu {
+  position:relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top:0;
+  left:100%;
+  margin-top:-6px;
+}
+
+.navbar-expand-md .navbar-nav .dropdown-menu {
+  margin-top: 0px;
+}
+
+.header-row-1 {
+  position: relative;
+  z-index: 4;
+  .navbar {
+    background: transparent !important;
+  }
+}
+
+.header-row-1 {
+  background: #fff;
+}
+.navbar-nav {
+  width: 100%;
+}
+
+.nav-item {
+  .dropdown-menu {
+    li {
+      a.dropdown-toggle {
+        @include arrright($cl: #000, $size: 8px, $w: 1px);
+        &:before {
+          content:''; 
+          right: 10px;
+        }
+        &:after {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.navbar {
+  padding: 0px;
+}
+
+.navbar-nav {
+  li.nav-item {
+    .nav-link.dropdown-toggle {
+      &:after {
+        display: none;
+      }
+      @include arrright($cl:#000, $size: 8px, $w: 1px);
+      &:before {
+        transform: rotate(135deg);
+        right: 5px;
+      }
+    }
+  }
+}
+
+.nav-item {
+  .nav-link {
+    font-weight: 500;
+  }
+}
+
+.nav-link {
+  padding: 20px 0px;
+}
+
+*{
+  @include minquery(768) { 
+    .navbar-expand-md .navbar-nav .nav-link {
+      padding-right: 20px;
+      padding-left:20px;
+    }
+  }
+}
+
+.search-icn {
+  .nav-link {
+    @include flexbox(center, center);
+    &:before {
+      content:''; 
+      display: none;
+    }
+    .material-icons {
+      top: 5px;
+      position: relative;
+    }
+  }
+}
+
+.search-icn {
+  .dropdown-menu {
+    border: none;
+    padding: 20px;
+  }
+}
+
+.search-icn .dropdown-menu {
+  border: none;
+  padding: 10px;
+  background: #eee;
+  left: -200px;
+  border-radius: 0px;
+}

@@ -1,0 +1,104 @@
+//accordion2
+.accordion-default {
+    .acr_con {
+        display: none;
+    }
+
+    .acr_title {
+        border-bottom: 2px solid #fff;
+    }
+
+    &.accordion-chevron {
+        .acr_title {
+            @include arrright($cl: #000, $size: 12px, $w: 2px);
+
+            &:before {
+                content: '';
+                transform: rotate(135deg);
+                margin-top: -7px;
+                right: 30px;
+            }
+
+            &:after {
+                display: none;
+            }
+
+            &.open {
+                &:before {
+                    content: '';
+                    transform: rotate(-45deg);
+                    margin-top: -3px;
+                    right: 30px;
+                }
+            }
+        }
+    }
+
+    .acr_title {
+        padding: 6px 20px;
+        border-bottom: 2px solid #eee;
+        font-size: 17px;
+        position: relative;
+
+        @include query($q768) {
+            padding: 7px 20px;
+            font-size: 13px;
+        }
+
+        &:before {
+            content: "";
+            width: 14px;
+            height: 2px;
+            background: #000;
+            display: block;
+            position: absolute;
+            right: 45px;
+            @include centerver;
+
+            @include query($q768) {
+                right: 24px;
+            }
+        }
+
+        &:after {
+            content: "";
+            height: 14px;
+            width: 2px;
+            background: #000;
+            display: block;
+            position: absolute;
+            right: 51px;
+            @include centerver;
+            @include transition_cubic(transform, $duration:0.3s, $effect:cubic-bezier(0.4, 0, 0.2, 1), $delay:0);
+
+            @include query($q768) {
+                right: 30px;
+            }
+        }
+
+        &.open {
+            &:after {
+                transform: rotate(90deg);
+            }
+        }
+
+        &.open~.acr_con1 {
+            border-bottom: 2px solid #eee;
+        }
+    }
+
+    .acr_con {
+        padding: 20px 20px;
+
+        @include query($q768) {
+            padding: 20px;
+        }
+
+        .block-logo-in-close a {
+            @include query($q768) {
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
+

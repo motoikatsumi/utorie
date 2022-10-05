@@ -1,0 +1,506 @@
+@import "../components/mixins";
+
+//since query3 will use mobile
+$querymobile : 960;
+
+.hamburger {
+	cursor: pointer;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 1000;
+	display: none;
+	&_inside {
+		z-index: 99;
+		position: relative;
+		span {
+			height: 2px;
+			position: absolute;
+			background: #fff;
+			display: inline-block;
+			width: 100%;
+			border-radius: 3px;
+			@include transition(.4s);
+			&:first-child {
+				top: 0;
+			}
+			&:nth-child(2) {
+				@include centerver;
+			}
+			&:last-child {
+				bottom: 0;
+			}
+			@include query($q520) {
+				background: $cl;
+			}
+		}
+	}
+}
+
+// TYPE HAMBUGER
+.navtype_2{
+	.hamburger{
+		
+	}
+}
+
+.menu-open {
+	position: relative;
+	.nav {
+		&.show{
+			.nav__inside{
+				left: 0;
+				opacity: 1;
+			}
+		}
+		&.type2 {
+			left: 0;
+			background: #2d81b0;
+			width: 100%;
+		}
+
+		// &.type3 {
+		// 	display: block;
+		// 	position: fixed;
+		// 	left: 0;
+		// 	height: 100%;
+		// 	z-index: 998;
+		// 	background: #2d81b0;
+		// 	text-align: center;
+		// 	opacity: 1;
+		// 	@include scaleX(1);
+		// }
+	}
+	.hamburger {
+		&_inside {
+			span {
+				&:nth-child(1) {
+					transform: translateY(9px) rotate(-225deg);
+					@include query($q520) {
+						transform: translateY(7px) rotate(-225deg);
+					}
+				}
+				&:nth-child(2) {
+					transform: translateY(0) rotate(225deg);
+					width: 100%
+				}
+				&:nth-child(3) {
+					opacity: 0;
+				}
+			}
+		}
+		// &.type2 {
+		// 	.hamburger_inside{
+		// 		span {
+		// 			&:nth-child(1) {
+		// 				transform: translateY(11px) rotate(-225deg);
+	
+		// 				@include query($querymobile) {
+		// 					transform: translateY(11px) rotate(-225deg);
+		// 				}
+	
+		// 				@include query($q414) {
+		// 					transform: translateY(8px) rotate(-225deg);
+		// 				}
+		// 			}
+	
+		// 			&:nth-child(2) {
+		// 				transform: translateY(0) rotate(225deg);
+		// 				width: 100%
+		// 			}
+	
+		// 			&:nth-child(3) {
+		// 				opacity: 0;
+		// 			}
+		// 		}
+		// 	}
+		// }
+	}
+}
+
+.top-nav {
+	.righticons {
+		@include flexbox(flex-end, center);
+	}
+	.header_top {
+		@include flexbox(space-between, center);
+	}
+	.container {
+		position: relative;
+	}
+
+	.hamburger,
+	.righticons--icon {
+		width: 57px;
+		height: 57px;
+		background: $cl;
+		position: relative;
+		transition: all .3s;
+		@include flexbox(center, center);
+		@include minquery(961) {
+			&:hover {
+				background: color($cl, 10);
+				@include transition_cubic(background);
+			}
+		}
+		@include query($q520) {
+			width: 44px;
+			height: 44px;
+			background: none;
+		}
+	}
+	.righticons--icon {
+		margin-right: 10px;
+		.hamburger_inside img{
+			max-width: 30px;
+		}
+		@include query($q520) {
+			margin-right: 3px;
+		}
+	}
+	.hamburger_inside {
+		height: 38%;
+		width: 56%;
+	}
+}
+
+.nav {
+	background: rgba($black, 0.15);
+	position: relative;
+	z-index: 999;
+	width: 100%;
+	@include query($querymobile) {
+		.megamenu{
+			display: none;
+		}
+	}
+	.container{
+		position: unset;
+	}
+	&__inside {
+		width: 100%;
+		z-index: 99;
+		// @include query($querymobile) {
+		// 	position: absolute;
+		// 	left: -100%;
+		// 	width: 100%;
+		// 	background: rgba($white, 0.95);
+		// 	transition: all .3s ease;
+		// 	opacity: 0;
+		// }
+		&__list {
+			@include flexbox(center, center);
+			@include query($querymobile) {
+				display: block;
+				height: auto;
+				flex-wrap: wrap;
+			}
+			li {
+				position: relative;
+				@include query($querymobile) {
+					border-bottom: 1px solid #ccc;
+					flex: 0 0 100%;
+				}
+				a {
+					font-size: 15px;
+					line-height: 1;
+					color: $cl;
+					text-decoration: none;
+					display: block;
+					padding: 15px 0;
+					text-align: center;
+					@include query($querymobile) {
+						padding: 20px 0;
+						text-align: left;
+					}
+					@include minquery(961) {
+						&:hover {
+							opacity: 0.8;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+//Humberger with text
+.text_true {
+	.hastext {
+		color: #fff;
+		font-size: 12px;
+		text-transform: uppercase;
+		font-weight: normal;
+		text-align: center;
+		@include centerhor();
+		bottom: 0;
+		@include query(750) {
+			font-size: 11px;
+		}
+	}
+	.hamburger,.righticons--icon {
+		&_inside {
+			top: -6px;
+		}
+	}
+	.righticons--icon {
+		.hamburger_inside {
+			margin: 0 auto;
+			text-align: center;
+			@include query($q520) {
+				img{
+					max-width: 24px;
+				}
+			}
+		}
+		&.icontel{
+			.hamburger_inside{
+				top: -8px;
+				@include minquery(961) {
+					img{
+						width: 26px;
+					}
+				}
+				@include query($q520) {
+					img{
+						width: 22px;
+					}
+				}
+			}
+		}
+	}
+}
+
+//Humberger with none text
+.text_false {
+	.top-nav .righticons--icon .hamburger_inside {
+		@include flexbox(center, center);
+	}
+}
+
+//Humberger show and menu hidden by default
+.navstate_hide {
+	.nav {
+		opacity: 0;
+		height: 100%;
+		top: 0;
+		position: fixed;
+		z-index: -10;
+		right: -35%;
+		width: 35%;
+		background: $cl;
+		transform: scaleX(1); 
+    @include transition_cubic(all, $duration:1.2s, $effect:cubic-bezier(0.1, 1, 0.1, 1), $delay:0);
+		
+		@include query($querymobile) {
+			width: 100%;
+			.container{
+				padding: 0;
+			}
+		}
+	}
+	&.menu-open {
+		// ---------------- IF NEED BACKGROUND OVERLAY ---------------- //
+		// &::after {
+		// 	position: fixed;
+		// 	content: "";
+		// 	top: 0;
+		// 	right: 0;
+		// 	background: #031629;
+		// 	opacity: 0.8;
+		// 	z-index: 100;
+		// 	width: 100%;
+		// 	height: 100vh;
+		// 	@include transition_cubic(width, $duration:0.8s, $effect:cubic-bezier(0.1, 1, 0.1, 1), $delay:0);
+		// }
+		.nav {
+			right: 0;
+			z-index: 999;
+			opacity: 1;
+		}
+		.top-nav .hamburger {
+			position: fixed;
+			right: 10px;
+			top: 10px;
+		}
+		.nav__inside__list {
+			padding-top: 20%;
+			background: none;
+			display: block;
+			li{
+				display: block;
+				width: 100%;
+				border-bottom: none;
+				a{
+					color: #fff;
+					font-weight: bold;
+					padding: 25px 0;
+					@include query($querymobile) {
+						text-align: left;
+					}
+					@include minquery(961) {
+						border-bottom: 1px solid #eee;
+						//HOVER LINE LEFT TO RIGHT
+						&:after {
+							content: "";
+							display: block;
+							left: 0;
+							bottom: 0;
+							width: 0;
+							height: 1px;
+							position: absolute;
+						}
+						&:hover {
+							@include transition_cubic(color);
+							color: color($cl, -100);
+							&:after {
+								width: 100%;
+								@include transition_cubic(width);
+								background: $cltext;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@include query($querymobile) {
+	li.hasdrop{
+		> a{
+			position: relative;
+			@include plusicon(#000);
+		}
+	}
+}
+
+.navstate_show {
+	.nav {
+		&__inside__list {
+			justify-content: space-between;
+		}
+		&__inside{
+			@include query($querymobile) {
+				position: absolute;
+				left: -100%;
+				width: 100%;
+				background: rgba($white, 0.95);
+				transition: all .3s ease;
+				opacity: 0;
+			}
+		}
+	}
+	.top-nav .hamburger {
+		@include minquery(961) {
+			display: none;
+		}
+	}
+}
+
+//Menu Level 1 
+// .navlevel_1{
+
+// }
+
+//Menu Level 2 
+.navlevel_2{
+	.childmenu{
+		display: none;
+		li{
+			animation: none;
+		}
+	}
+}
+.navlevel_2:not(.navstate_hide) {
+	.nav__inside__list{
+		> li{
+			flex: 1 1 auto;
+			background: #eee;
+		}
+	}
+	@include query($querymobile) {
+		.megamenu{
+			display: block;
+		}
+	}
+	li.hasdrop {
+		position: unset;
+		.childmenu {
+			position: absolute;
+			background: rgba(255,255,255,0.8);
+			z-index: 9999;
+			left: 0;
+			top: auto;
+			width: 100%;
+			height: auto;
+			li{
+				flex: 0 0 auto;
+			}
+			@include query($querymobile) {
+				position: relative;
+				width: 100%;
+				display: none;
+				li{
+					border-bottom: 0;
+					&:last-child{
+						border-bottom: 0;
+					}
+				}
+			}
+		}
+		.megamenu_inside {
+			width: 100%;
+			left: 0;
+			&_mother {
+				@include flexbox(flex-start, flex-start);
+				@include query($querymobile) {
+					flex-wrap: wrap;
+				}
+			}
+			&_col {
+				width: 100%;
+				@include minquery(961) {
+					@include widthbox(25%, 10px);
+				}
+			}
+		}
+	}
+}
+
+.navtype_2{
+	.nav.type2{
+		@include minquery(961) {
+			@include flexbox(center, center);
+			.container{
+				width: 100%;
+			}
+			.nav__inside{
+				&__list{
+					padding-top: 0;
+				}
+			}
+		}
+	}
+	&.menu-open{
+		.nav__inside{
+			&__list{
+				@include minquery(961) {
+					display: flex;
+					flex-wrap: nowrap;
+					li{
+						flex: 1 1 auto;
+						width: auto;
+						a{
+							border-bottom: 0;
+							&::after{
+								background: none;
+								height: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

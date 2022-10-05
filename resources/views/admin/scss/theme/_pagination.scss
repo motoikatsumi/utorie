@@ -1,0 +1,33 @@
+.pagination {
+  @include flexbox(center, center);
+
+  li {
+    background: #FFA837;
+    margin-left: 2px;
+    margin-right: 2px;
+
+    a {
+      color: #fff;
+      display: block;
+      width: 36px;
+      height: 36px;
+      @include flexbox(center, center);
+    }
+
+    &.btnback,
+    &.btnnext {
+      a {
+        width: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
+
+    &.active,
+    &:hover {
+      a {
+        background: #FF9001;
+      }
+    }
+  }
+}

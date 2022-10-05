@@ -1,0 +1,5 @@
+.header-logo {
+  @include flexbox(flex-start, center);
+  height: 100%;
+  width: 100%;
+}

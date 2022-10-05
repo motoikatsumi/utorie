@@ -1,0 +1,109 @@
+@import "./reset/normalize";
+@import "./reset/other";
+@import "./components/mixins";
+@import "./components/btn";
+@import "./sb-admin-2.min.scss";
+@import "./fontawesome.min.scss";
+@import "./components/default";
+@import "./cuong";
+
+//components  
+@import "./components/form";
+@import "./components/aside";
+
+//pages
+@import "./pages/login";
+
+.table-hover {
+    thead {
+        th {
+            // padding: 10px 15px !important;
+            min-width: 50px;
+        }
+    }
+}
+
+.sidebar-dark .nav-item .nav-link {
+    padding: 0px 1rem;
+}
+
+tr.city_type2 {
+    background-color: #F3F781 !important;
+
+    td:first-child {
+        background-color: #F3F781 !important;
+    }
+}
+
+.btn[aria-expanded="true"] {
+    i {
+        &:before {
+            content: "\f077" !important;
+        }
+    }
+}
+
+.mr4 {
+    margin-right: 4px;
+}
+
+.ml4 {
+    margin-left: 4px;
+}
+
+.form-control{
+    font-size: 0.85em;
+}
+
+.pagination{
+    margin-bottom: 0;
+}
+
+.result{
+    p{
+        font-size: 14px;
+        margin: 1.5rem 0;
+    }
+}
+
+#page-stats{
+    .input.select{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: 7px 0;
+        label{
+            margin-bottom: 0;
+        }
+        div{
+            margin-right: 20px;
+        }
+    }
+}
+
+.choosen_companies {
+    margin-top: 30px !important;
+    span {
+        border: 1px solid #555;
+        border-radius: 5px;
+        padding: 2px 10px;
+        margin-right: 15px;
+        position: relative;
+        display: inline-block;
+        margin-bottom: 15px;
+        i {
+            position: absolute;
+            right: -15px;
+            top: -15px;
+            background: #555;
+            padding: 3px;
+            color: #fff;
+            height: 20px;
+            width: 20px;
+            @include flexbox(center, center);
+            border-radius: 100%;
+            font-size: 12px;
+        }
+    }
+}

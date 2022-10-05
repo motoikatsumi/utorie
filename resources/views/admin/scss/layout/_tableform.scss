@@ -1,0 +1,210 @@
+@import "../components/mixins";
+
+@mixin tableform($bordercolor, $thper, $thbg, $thvertical, $thfontsize, $tdpadding, $inputheight, $inputborder, $requirebg, $norequirebg, $b_radius:3px) {
+	.table_template {
+		margin-top: 40px;
+		@include query($q768) {
+			margin-top: 30px;
+		}
+		.confirm_submit{
+			text-align: center;
+			margin: 20px auto;
+			font-size: 16px;
+			input {
+				margin-right: 5px;
+			}
+		}
+	}
+
+	.btn_view {
+		margin: 20px auto;
+		margin-bottom: 60px;
+		@include btn_normal(#fff, $cl, 360px, 80%, 60px, 50px, 16px, 16px, 0px, $cl);
+		.btn_normal {
+			position: relative;
+			img{
+				@include centerver;
+				width: 20px;
+				height: 20px;
+				right: 20px;
+			}
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+	}
+
+	.form_submit{
+		margin: 40px 0;
+		@include minquery(768) {
+			margin: 70px 0;
+		}
+		.lable{
+			line-height: 2;
+			letter-spacing: 2px;
+		}
+		&_btn{
+			max-width: 400px;
+			margin: 0 auto;
+			margin-top: 30px;
+			span{
+				font-size: 20px;
+			}
+			button{
+				width: 100%;
+				max-width: 400px;
+				height: 60px;
+				&::after{
+						height: 60px;
+				}
+				@include minquery(768) {
+						height: 80px;
+						&::after{
+								height: 80px;
+						}
+				}
+			}
+			img{
+				position: relative;
+				margin-left: 20px;
+				z-index: 99;
+				top: 3px;
+			}
+		}
+	}
+
+	table {
+		border: 1px solid $bordercolor;
+		width: 100%;
+		border-spacing: 0;
+		border-collapse: collapse;
+		input[type="radio"], input[type="checkbox"] { vertical-align: -0.1em; margin-right: 10px;}
+		th,td{
+			line-height: 1.6;
+			text-align: justify;
+			border: 1px solid $bordercolor;
+			padding: $tdpadding;
+			color: #000;
+			@include query($q768){
+				display: block;
+				width: 100%;
+				padding: 15px;
+				border: none;
+				border-bottom: 1px solid $bordercolor;
+				&:after {
+					@include clearfix();
+				}
+			}
+		}
+		tr:last-child td {
+			border-bottom: none;
+		}
+		input[type="text"],
+		input[type="email"],
+		input[type="name"],
+		input[type="tel"],
+		input[type="number"],
+		input[type="password"],
+		select,
+		textarea {
+			height: $inputheight;
+			border: 1px solid $inputborder;
+			padding-left: 10px;
+			border: 1px solid #ddd;
+			background: #fff;
+			width: 100%;
+			border-radius: $b_radius;
+			// @include safariremove;
+			@include query($q768) {
+				height: 42px;
+			}
+		}
+		select{
+			-webkit-appearance: menulist;
+			-moz-appearance: menulist;
+			appearance: menulist;
+		}
+		textarea {
+			padding: 10px;
+			height: 170px;
+			@include query($q768) {
+				height: 150px;
+			}
+		}
+		.checkboxtt span {
+			label {
+				width: 33.3%;
+				display: inline-block;
+				@include query($q768){
+					width: 100%;
+				}
+			}
+		}
+		.w35{
+			@include query(768) {
+				width: 60% !important;
+			}
+		}
+		th {
+			background: $thbg;
+			font-weight: bold;
+			width: $thper;
+			font-size: $thfontsize;
+			vertical-align: $thvertical;
+			.required,.nonerequired {
+				display: table;
+				float: left;
+				margin-right: 10px;
+				&:before {
+					content: "必須";
+					font-size: 13px;
+					font-weight: normal;
+					display: inline-block;
+					color: #fff;
+					padding: 2px 10px;
+					background: $requirebg;
+					@include query($q768){
+						font-size: 11px;
+					}
+				}
+			}
+			.required{
+				&:before {
+					content: "必須";
+					background: $requirebg;
+				}
+			}
+			.nonerequired {
+				&:before {
+					content: "任意";
+					background: $norequirebg;
+				}
+			}
+			.flexbox{
+				justify-content: flex-start;
+				flex-wrap: wrap;
+				li{
+					min-width: 300px;
+					margin: 5px 0;
+					&:last-child{
+						min-width: 100%;
+						@include flexbox(space-between,center);
+						label{
+							min-width: 100px;
+						}
+					}
+					@include query($q768){
+						width: 48%;
+						min-width: inherit;
+					}
+				}
+			}
+		}
+		@include query($q768){
+			tr,tbody,th,td {
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+}

@@ -1,0 +1,115 @@
+@import "./mixins";
+.wimg.loadit.animated,.wimgright.loadit.animated {
+	position:relative;
+}
+
+.wimg:after,
+.wimgright:after {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 0;                
+  width: 100%;                
+  height: 100%;                
+  background: #f7f7f8;                
+  z-index: 3;                
+  @include cubic;
+}
+
+.wimg:before,
+.wimgright:before {
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: $cl;
+  z-index: 3;
+  @include cubic
+}
+
+.wimg:after {
+  right: 0;
+  transform-origin: top right;
+}
+
+.wimgright:after {
+  left: 0;
+  transform-origin: top left;
+}
+
+.wimg:before {
+  right: 0;
+  transform-origin: top right;
+}
+
+.wimgright:before {
+  left: 0;
+  transform-origin: top left;
+}
+
+.wimg.loadit.animated.slideright:after,
+.wimgright.loadit.animated.slideleft:after {
+  transform: scaleX(0);
+}
+
+.wimg.loadit.animated.slideright:before,
+.wimgright.loadit.animated.slideleft:before {
+  transform: scaleX(0);
+  transition-delay: 0.3s;
+  opacity: 0.7;
+}
+
+// .fadeUpLeftRight{
+//   @include fadeUpLeftRight($duration: 1s, $delay: 0.3s, $function: cubic-bezier(0.25, 0.1, 0.25, 1));
+// }
+
+// .fadeUpRightLeft{
+//   @include fadeUpRightLeft($duration: 1s, $delay: 0.3s, $function: cubic-bezier(0.25, 0.1, 0.25, 1));
+// }
+
+// .fadeDownRightLeft{
+//   @include fadeDownRightLeft($duration: 1s, $delay: 0.3s, $function: cubic-bezier(0.25, 0.1, 0.25, 1));
+// }
+
+// .fadeDownLeftRight{
+//   @include fadeDownLeftRight($duration: 1s, $delay: 0.3s, $function: cubic-bezier(0.25, 0.1, 0.25, 1));
+// }
+
+//Menu run in step - Navstate SHOW
+.navstate_show.menu-open .nav__inside__list {
+  > li {
+    @include fadeInUp($duration: 0.3s,$function: cubic-bezier(0, 0.2, 0.8, 1),$delay: 0s);
+    @include query(750) {
+      @include fadeInLeft($duration: 0.6s,$function: cubic-bezier(0, 0.2, 0.8, 1), $delay: 0s);
+    }
+    @for $i from 1 through 15 {
+      &:nth-child(#{$i}) {
+      animation-delay: $i * .1 + s;
+        @include query(750) {
+          animation-delay: $i*.1 + s;
+        }
+      }
+    } 
+  }
+}
+
+//Menu run in step - Navstate HIDE
+.navstate_hide.menu-open .nav__inside__list {
+  > li {
+    @include fadeInUp($duration: 0.3s,$function: cubic-bezier(0, 0.2, 0.8, 1));
+    @include query(750) {
+      @include fadeInRight($duration: 0.6s,$function: cubic-bezier(0, 0.2, 0.8, 1));
+    }
+    @for $i from 1 through 15 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 0.1 + s;
+        @include query(750) {
+          animation-delay: $i * 0.1 + s;
+        }
+      }
+    }
+  }
+}
+//END EFFECT

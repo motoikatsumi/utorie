@@ -1,0 +1,99 @@
+@import "../components/mixins";
+
+.ahover{
+  position: relative;
+  a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  a:after {
+    bottom: -1px;
+    display: block;
+    height: 1px;
+    width: 0%;
+    content: "";
+    background-color: $cl;
+    left: 50%;
+  }
+  @include minquery(960){
+    a:hover{
+      opacity: 1;
+      color: $cl;
+    }
+    a:hover:after {
+      opacity: 1;
+      width: 100%;
+      left: 0;
+    }
+  }
+}
+
+button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.btnpage{
+  margin: 0 auto;
+  width: 100%;
+  max-width: 210px;
+  margin-top: 30px;
+  transition: all .3s;
+  @include query(768) {
+    margin-top: 20px;
+    max-width: 180px;
+  }
+  a,button{
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 20px;
+    color: #fff;    
+    position: relative;
+    @include bggradient;
+    
+    @include query(768) {
+      font-size: 18px;
+      padding: 5px 0;
+    }
+    span{
+      position: relative;
+      z-index: 2;
+      @include arrright;
+      &::before{
+        @include iconarrow(#fff);
+        right: 50%;
+        margin-right: -50px;
+      }
+    }
+  }
+  &.btnback{
+    margin-top: 0;
+    margin-left: 0;
+    a{
+      span{
+        @include arrleft;
+        &::before{
+          @include iconarrow(#fff);
+          right: inherit;
+          left: 0%;
+          margin-left: -50px;
+          transform: rotate(-135deg) !important;
+        }
+      }
+    }
+  }
+  &.btnnext{
+    margin-top: 0;
+    margin-right: 0;
+  }
+}
+
+.btn-outline-warning {
+  color: #f6c23e !important;
+  &:hover { 
+    color: #fff !important; 
+  }
+}

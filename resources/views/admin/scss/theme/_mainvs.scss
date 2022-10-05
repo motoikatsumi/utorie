@@ -1,0 +1,24 @@
+.owl-dots {
+  text-align: center;
+}
+.mainmv {
+  .bgmv {
+    height: 700px;
+    background-size: cover;
+    background-position: center;
+    @include query($md) {
+      height: 400px;
+    }
+    .container {
+      background: container;
+    }
+  }
+  .mainmv-c {
+    position:absolute;
+    top: 30%;
+    @include query($md) {
+      top: 20%;
+    }
+  }
+}
+

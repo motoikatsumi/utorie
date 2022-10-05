@@ -1,0 +1,35 @@
+@import "../components/mixins";
+
+.top_listnews {
+    li {
+        margin-bottom: 20px;
+        a {
+            @include flexbox(flex-start, flex-start);
+            @include query($q520) {
+                flex-wrap: wrap;
+            }
+            span {
+                &.date {
+                    width: 100px;
+                    display: block;
+                    white-space: nowrap;
+                    color: #9fa4a8;
+                    @include query($q520) {
+                        width: 100%;
+                    }
+                }
+                &.title {
+                    @include widthbox(100%, 100px);
+                    @include query($q520) {
+                        width: 100%;
+                    }
+                    &:hover {
+                        opacity: 0.6;
+                        @include transition(0.4);
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+@import "../components/mixins";
+
+.footer{
+	height: 2000px;
+	padding-top: 500px;
+	.footbottom {
+		p{
+			font-size: 16px;
+			background: #e8e8e8;
+			text-align: center;
+			padding: 15px 0; 
+		}
+	}
+	.page_top_cont {
+		width:100%;
+		max-width: 100%;
+		position:fixed; 
+		z-index:990;
+		bottom: 22px;
+		right: 0;
+		.page_top {
+			// max-width:100%; 
+			// margin:0 auto; 
+			// text-align:right; 
+			// position:relative;
+			.to_top {
+				cursor:pointer;
+				display:block;
+				position:absolute; 
+				bottom:0; 
+				right:25px; 
+				zoom: 1;
+				// -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+				// filter: alpha(opacity=0);
+				// opacity: 0;
+				text-align: right;
+				z-index: 999;
+				img{
+					width: 45px;
+					height: 45px;
+				}
+			}
+		}
+	}
+}

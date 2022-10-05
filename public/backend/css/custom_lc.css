@@ -1,0 +1,66 @@
+.required-mark {
+    color: #f00;
+}
+.ml-50{
+    margin-left: 50px;
+}
+.mr-50{
+    margin-right: 50px;
+}
+.delete_img{
+    position: absolute;
+    color: #fb5050;
+    font-size: 20px;
+    right: 8px;
+    top: 5px;
+}
+.img_action{
+    position: relative;
+    max-width: 235px;
+    margin-top: 10px;
+    margin-right: 1%;
+}
+.form-groupimg{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.form-groupimg .img_action{
+    flex: 0 0 19.2%;
+}
+.form-groupimg .img_action:nth-child(5n),
+.form-groupimg .img_action:last-child{
+    margin-right: 0;
+}
+.img_action img{
+    max-width: 100%;
+    max-height: 140px;
+}
+#main_img, #image_file{
+}
+.wp-setting-link{
+    display: table;
+    width: 70%;
+}
+.wp-setting-link input{
+    width: 400px;
+}
+.w-pc{
+    padding: 10px;
+    border: 1px solid #c5c1c1;
+}
+.c_table{
+
+}
+.c_table td{
+    vertical-align: top !important;
+    width: auto !important;
+}
+.c_table input{
+    border: 1px solid #c5c1c1;
+}
+
+#cke_18,#cke_26,#cke_27,#cke_36,#cke_37,#cke_24,#cke_45,#cke_38,#cke_28,#cke_23{
+    display: none;
+}

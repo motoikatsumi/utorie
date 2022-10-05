@@ -1,0 +1,182 @@
+
+$('body').on('click', '.customselect1', function () {
+    $(this).find('ul').toggleClass('ultoggle');
+})
+
+var city_name = sticking_name = pref_name = genre_name = url_search = ''
+var prefix = $('#url_prefix').attr('data-url')
+var params_history = JSON.parse(sessionStorage.getItem('params_history'));
+var click_type = sessionStorage.getItem('click_type');
+console.log(params_history);
+sessionStorage.removeItem('params_history')
+    if(params_history!=null){
+        $('.block__search div').addClass('hidden');
+        $('.block__search').append('<div class="loader"></div>');
+        $('.block__search--area').css('display','none')
+        if(params_history.pref!=null){
+            setTimeout(function () {
+                var id_temp = $('.dispc .js-btnArea[data-url="'+params_history.pref+'"]').closest('.maparea').attr('id');
+                $("."+id_temp).find('button').trigger('click');
+            },500)
+            setTimeout(function () {
+                $('button[data-url="'+params_history.pref+'"]').trigger('click');
+            },1000)
+            setTimeout(function () {
+                $.each(params_history.city,function(k,v){
+                    $('input[data-name="'+v+'"]').trigger('click');
+                })
+                // success_click = true;
+            },2500)
+            if(click_type=='genre'){
+                setTimeout(function () {
+                    $('.choose_sticking_point').trigger('click')
+                },3500)
+                // success_click = true;
+            }
+            setTimeout(function () {
+                // if(success_click == true){
+                    $('.block__search div').removeClass('hidden');
+                    $('.block__search').find('.loader').remove();
+                // }
+            },4000)
+        }
+    }
+
+    $('body').on('click', '.js-btnGenre', function (e) {
+        e.preventDefault();
+        //pc
+        $('.titstep1 .genre_click').html('全国の' + $(this).children('span').text() + 'を探す')
+        //sp
+        $('.search_head_sp .titstep2 .genre_click').html('全国の' + $(this).children('span').text() + 'を探す')
+        if (viewportW < 769) {
+            $('.titstep').hide();
+        }
+		genre_name = '/'+$(this).attr('data-name')
+    })
+    .on('click', '.block__search--area .js-btnArea', function (e) {
+        e.preventDefault();
+		pref_name = '/'+$(this).attr('data-url')
+        $('.search_head_pc .titstep').hide();
+        if ($('.search_head_pc .titstep1 .genre_click').text() == "") {
+            $('.search_head_pc .titstep2 .area_click').html('全国の不動産・住宅会社を探す')
+        } else {
+            var genre_click = $('.search_head_pc .titstep1 .genre_click').text()
+            $('.search_head_pc .titstep2 .area_click').html($(this).children('span').text() + 'の')
+            $('.search_head_pc .titstep2 .genre_click').html(genre_click.slice(3, -3) + 'を探す')
+        }
+        if ($('.search_head_pc .titstep2 .genre_click').text() == "") {
+            $('.search_head_pc .titstep3 .area_click').html($(this).children('span').text() + 'の不動産・住宅会社を探す')
+        } else {
+            var genre_click = $('.search_head_pc .titstep2 .genre_click').text()
+            $('.search_head_pc .titstep3 .area_click').html($(this).children('span').text() + 'の')
+            $('.search_head_pc .titstep3 .genre_click').html(genre_click)
+        }
+		url_search = prefix+genre_name+pref_name
+		$('.btnafix').attr('href',url_search)
+    })
+    //sp
+    .on('click', '.block__area--btn .js-btnArea', function (e) {
+        var genre_sp = $('.search_head_sp .titstep2 .genre_click').text()
+        $('.search_head_sp .titstep3 .area_click').html($(this).children('span').text() + 'の');
+        $('.search_head_sp .titstep3 .genre_click').html(genre_sp.slice(3, -3) + 'を探す');
+    })
+    .on('click', '.js-area', function () {
+        // city_name = ($(this).val()=='all') ? '' : city_name
+        if($(this).val()=='all'){
+            city_name = '';
+            $('.block__city-same input').prop('checked',false);
+            $(this).prop('checked',true);
+        }else{
+            $('.check_all').prop('checked',false);
+        }
+        city_name = (city_name=='city_all') ? '' : city_name
+
+        if(city_name.includes($(this).val())){
+            city_name = city_name.replace('--city_'+$(this).val(),'');
+            city_name = city_name.replace('city_'+$(this).val(),'');
+            city_name = city_name.substring(0, 2)=='--' ? city_name.replace('--','') : city_name;
+        }else{
+            city_name += (city_name == '') ? 'city_'+$(this).val() : '--' + 'city_'+$(this).val()
+        }
+
+		url_search = prefix+genre_name+pref_name+'/'+city_name
+		$('.btnafix').attr('href',url_search)
+    })
+    .on('click', '.sticking_poin_name', function () {
+        if(sticking_name.includes($(this).val())){
+            sticking_name = sticking_name.replace('--sticking_'+$(this).val(),'');
+            sticking_name = sticking_name.replace('sticking_'+$(this).val(),'');
+            sticking_name = sticking_name.substring(0, 2)=='--' ? sticking_name.replace('--','') : sticking_name;
+        }else{
+            sticking_name += (sticking_name == '') ? 'sticking_'+$(this).val() : '--' + 'sticking_'+$(this).val()
+        }
+
+        url_search = city_name=='' ? prefix+genre_name+pref_name+'/'+sticking_name
+		                            : prefix+genre_name+pref_name+'/'+city_name+'/'+sticking_name
+		$('.btnafix').attr('href',url_search)
+	})
+	.on('click', '.js-sticking', function () {
+		genre_name = '/'+$(this).attr('data-name')
+        sticking_name='';
+        url_search = prefix+genre_name+pref_name+'/'+city_name
+		$('.btnafix').attr('href',url_search)
+    })
+    .on('click', '.setPrefHistory', function (){
+        sessionStorage.setItem('params_history', $('input[name="current-params"]').val())
+        sessionStorage.setItem('click_type', 'pref')
+    })
+    .on('click', '.setGenreHistory', function (){
+        sessionStorage.setItem('params_history', $('input[name="current-params"]').val())
+        sessionStorage.setItem('click_type', 'genre')
+    })
+
+    // var list_same = title_same = list_not_same = '';
+    // var appeared = [];
+    // const area_type = data[0].get_area.filter(function (area) {
+    //   return area.area_type === 2
+    // });
+
+    // if (area_type.length > 0) {
+    //   var list_not_same = '<div class="block__city--tit area_type_2" style="display: block;"><span>その他の地域</span></div>\
+    //                                   <div class="block__city--list">\
+    //                                     <ul class="flexbox block__city-same">'
+    //     $.each(area_type, function (index, el) {
+    //         title_same = el.name == '文京区' ? ' 東京23区':el.name
+    //         list_same += '<div class="block__city--tit area_type_2" style="display: block;"><span>' + title_same + '</span></div>\
+    //                                         <div class="block__city--list">\
+    //                                           <ul class="flexbox block__city-same">\
+    //                                             <li class="block__city--input">\
+    //                                                 <input id="allarea_'+index+'" type="checkbox" class="check_all js-area" value="all_'+el.id+'">\
+    //                                                 <label for="allarea_'+index+'">' + title_same + '全域</label>\
+    //                                             </li>'
+    //         $.each(data[0].get_area, function (k, area) {
+    //             if ((area.name.includes('区') && area.pref == 13)||(area.name.includes(el.name) == true && area.area_type != 2)) {
+    //                 list_same += '<li class="block__city--input">\
+    //                                 <input id="areaID_' + area.id + '" type="checkbox" value="' + area.id + '" data-name="'+ area.name +'" class="js-area">\
+    //                                 <label for="areaID_' + area.id + '">' + area.name + '</label>\
+    //                               </li>'
+    //             } else if (area.area_type != 2 && area.name.includes('区')===false && appeared.includes(area.id)===false) {
+    //                 appeared.push(area.id)
+    //                 list_not_same += '<li class="block__city--input">\
+    //                                               <input id="areaID_' + area.id + '" type="checkbox" value="' + area.id + '" data-name="'+ area.name +'" class="js-area">\
+    //                                               <label for="areaID_' + area.id + '">' + area.name + '</label>\
+    //                                             </li>'
+    //             }
+    //         })
+    //       list_same += '</ul></div></div>'
+    //     })
+    //     list_not_same += '</ul></div></div>'
+    // }else{
+    //   var list_not_same = '<div class="block__city--list">\
+    //                                     <ul class="flexbox block__city-same">'
+    //   $.each(data[0].get_area, function (k, area) {
+    //     list_not_same += '<li class="block__city--input">\
+    //                           <input id="areaID_' + area.id + '" type="checkbox" value="' + area.id + '" data-name="'+ area.name +'" class="js-area">\
+    //                           <label for="areaID_' + area.id + '">' + area.name + '</label>\
+    //                           </li>'
+    //   })
+    //   list_not_same += '</ul></div></div>'
+    // }
+    // setTimeout(function(){
+    //   $('#append_area').html(list_same+list_not_same)
+    // }, 500);

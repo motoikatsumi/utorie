@@ -1,0 +1,156 @@
+@import "../components/define";
+
+// @mixin helvetica($fw:false) {
+//     @if ($fw) {
+//         @font-face {
+//             font-family: Helbold;
+//             src: url(../font/Helvetica-Condensed-Bold.otf);
+//         }
+//         font-family: Helbold !important;
+//         font-weight: bold;
+//     }
+//     @else {
+//         @font-face {
+//             font-family: Helnormal;
+//             src: url(../font/Helvetica-Condensed.otf);
+//         }
+//         font-family: Helnormal !important;
+//         font-weight: normal;
+//     }
+// }
+
+// @if($lato){
+//     @import url('https://fonts.googleapis.com/css?family=Lato:400,400i,500,700&subset=vietnamese');
+// }
+// @if($roboto){
+//     @import url('https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700&subset=vietnamese');
+// }
+// @if($open_sans){
+//     @import url('https://fonts.googleapis.com/css?family=Open Sans:400,400i,600,700&subset=vietnamese');
+// }
+// @if($pt_sans){
+//     @import url('https://fonts.googleapis.com/css?family=PT Sans:400,400i,600,700&subset=vietnamese');
+// }
+// @if($montserrat){
+//     @import url('https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,600&subset=vietnamese');
+// }
+// @if($oswald){
+//     @import url('https://fonts.googleapis.com/css?family=Oswald:400,500,700&subset=vietnamese');
+// }
+// @if($quicksand){
+//     @import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&display=swap');
+// }
+
+
+@mixin lato {   
+    font-family: 'Lato', Arial, Helvetica, sans-serif !important;
+}
+
+@mixin roboto {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif !important;
+}
+
+@mixin open_sans {
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif !important;
+}
+
+@mixin pt_sans {
+    font-family: 'PT Sans', Arial, Helvetica, sans-serif !important;
+}
+
+@mixin montserrat {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif !important;
+}
+
+@mixin oswald {
+    font-family: 'Oswald', Arial, Helvetica, sans-serif !important;
+}
+
+@mixin quicksand {
+    font-family: 'Quicksand', Arial, Helvetica, sans-serif;
+}
+
+@mixin fontnoto {
+    font-family: 'Noto Sans JP';
+}
+
+@mixin fontpinyo {
+    font-family: 'Pinyon Script', 'Playfair Display';
+}
+
+@mixin gothic {
+    font-family: "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", Osaka, 'MS UI Gothic', sans-serif !important;
+}
+
+@mixin gothic_meiryo {
+    font-family: "Meiryo", "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", Osaka, 'MS UI Gothic', sans-serif;
+}
+
+@mixin gothicMedium {
+    font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", "MS PGothic", Osaka, 'MS UI Gothic', sans-serif !important;
+}
+
+@mixin mincho {
+    font-family: "Yu Mincho", "YuMincho", "YuMin-medium", 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', '游明朝', '游明朝体', 'MS 明朝', 'MS Mincho', HiraMinProN-W3, 'TakaoEx明朝', TakaoExMincho, 'MotoyaLCedar', 'Droid Sans Japanese', serif !important;
+    //antialiase for MS font if not work. 
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-transform: rotate(0.05deg);
+    transform: rotate(0.05deg);
+}
+
+@mixin jpmincho {
+    font-family: "jpfontBold", "Yu Mincho", "YuMincho", "YuMin-medium", 'ヒラギノ明朝 ProN', 'Hiragino Mincho ProN', '游明朝', '游明朝体', 'ＭＳ 明朝', 'MS Mincho', HiraMinProN-W3, 'TakaoEx明朝', TakaoExMincho, 'MotoyaLCedar', 'Droid Sans Japanese', serif !important;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 100;
+    src: url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Thin.woff2) format('woff2'),
+            url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Thin.woff) format('woff'),
+            url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Thin.otf) format('opentype');
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 300;
+    src: url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Light.woff2) format('woff2'),
+            url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Light.woff) format('woff'),
+            url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Light.otf) format('opentype');
+}
+
+@font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 400;
+    src: url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Regular.otf) format('opentype');
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 500;
+    src: url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Medium.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Medium.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Medium.otf) format('opentype');
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 700;
+    src: url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Bold.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Bold.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Bold.otf) format('opentype');
+}
+@font-face {
+    font-family: 'Noto Sans JP';
+    font-style: normal;
+    font-weight: 900;
+    src: url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Black.woff2) format('woff2'),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Black.woff) format('woff'),
+        url(//fonts.gstatic.com/ea/notosansjp/v5/NotoSansJP-Black.otf) format('opentype');
+}
+//END FONT

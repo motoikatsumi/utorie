@@ -1,0 +1,735 @@
+body {
+  img, iframe {
+    max-width: 100%;
+    line-height: 0;
+  }
+  .img-cover {
+    overflow: hidden;
+    line-height: 0;
+    img{
+        transform: scale(1);
+        @include transition_cubic(transform, $duration:0.3s, $effect:cubic-bezier(0.26, 0.8, 0.62, 0.9), $delay:0)
+    }
+  }
+}
+
+// tat ca padding va margin
+.col-2-0 {
+  width: 50%;
+  margin-right: 0px;
+}
+.col-3-0 {
+  width: 33.3%;
+  margin-right: 0px;
+}
+.col-4-0 {
+  width: 25%;
+  margin-right: 0px;
+}
+.col-5-0 {
+  width: 20%;
+  margin-right: 0px;
+}
+.col-6-0 {
+  width: 16.6%;
+  margin-right: 0px;
+}
+
+@each $margin in $margins {
+  @each $col in $cols {
+    .col-#{$col}-#{$margin} {
+      width:calc(#{(100/$col)}% - #{$margin*($col - 1)/$col}px);
+      margin-right: $margin+px;
+      &:nth-child(#{$col}n) { 
+        margin-right: 0px;
+      }
+    }
+  }
+}
+[class^="col-"] {
+ &:after {
+   content:''; 
+   clear: both;
+   display: block;
+ }   
+}
+[class^="btn-dark"]{
+  color: #fff;
+}
+
+//border-radius
+@for $i from 0 to 100 {
+  .br#{$i} {
+    border-radius: $i+px;
+  }
+}
+
+//buttons
+.btn {
+  width: auto;
+  @include flexbox(center, center);
+  &.btn-dark {
+    background: #333;
+    color: #ffffff;
+    &:hover {
+      background: #555;
+    } 
+  }
+  &.btn-darker {
+    background: #000;
+    color: #ffffff;
+    &:hover { 
+      background: #333;
+    }
+  }
+  &.btn-light {
+    background: #eee;
+    color: #000;
+    &:hover {
+      background: #ddd;
+    }
+  }
+}
+
+
+@mixin btn($type:normal, $size:40px, $fz:14px) {
+  .btn-#{$type}{
+    height: $size;
+    font-size: $fz;
+  }
+}
+
+.btn-primary {
+  background: $primary;
+  color: #fff;
+  &:hover { 
+    background: color($primary, 10);
+  }
+}
+ //border
+.btn-border {
+  border: 1px solid $primary;
+  color: $primary;
+  &:hover {
+    background: $primary;
+    color: #fff;
+  }
+  &-2 {
+    border-width: 2px;
+  }
+  &-3 {
+    border-width: 3px;
+  }
+  &-dark {
+    border: 1px solid #333;
+    color: #333;
+    &:hover {
+      background: #333;
+      color: #fff;
+    }
+  }
+  &-darker {
+    border: 1px solid #000;
+    color: #000;
+    &:hover {
+      background: #000;
+      color: #fff;
+    }
+  }
+  &-light {
+    border: 1px solid #ddd;
+    color: #333;
+    &:hover {
+      background: #ddd;
+      color: #111;
+    }
+  }
+}
+
+
+//btn background custom
+@mixin bgcl($color, $dark:1){
+  $colorwithout: str-replace(to-string($color), '#', '');
+  .bgcl-#{$colorwithout} {
+      background: #{$color};
+      @if ($dark) {
+        color: #fff;
+      } @else {
+        color: #000;
+      }
+      &.btn {
+        &:hover { 
+          background:color($color, 10);
+          color: #fff;
+        }
+      }
+  }
+}
+
+@mixin cl($color){
+  $colorwithout: str-replace(to-string($color), '#', '');
+  .cl-#{$colorwithout} {
+      color: #{$color};
+  }
+}
+
+//height
+//border-radius
+// $height: 1;
+// @for $i from 1 through 50 {
+//   $i: $i*2;
+//   .h#{$i} {
+//     height: $i+px !important;
+//   }
+//   .w#{$i} {
+//     width: $i+px !important;
+//   }
+//   .max-h#{$i} {
+//     max-height: $i+px !important;
+//   }
+//   .max-w#{$i} {
+//     max-width: $i+px !important;
+//   }
+//   .t#{$i} {
+//     top: $i+px !important;
+//   }
+//   .r#{$i} {
+//     right: $i+px !important;
+//   }
+//   .b#{$i} {
+//     bottom: $i+px !important;
+//   }
+//   .l#{$i} {
+//     left: $i+px !important;
+//   }
+// }
+// @for $i from 20 through 150 {
+//   $i: $i*5;
+//   .h#{$i} {
+//     height: $i+px !important;
+//   }
+//   .w#{$i} {
+//     width: $i+px !important;
+//   }
+//   .max-h#{$i} {
+//     max-height: $i+px !important;
+//   }
+//   .max-w#{$i} {
+//     max-height: $i+px !important;
+//   }
+//   .t#{$i} {
+//     top: $i+px !important;
+//   }
+//   .r#{$i} {
+//     right: $i+px !important;
+//   }
+//   .b#{$i} {
+//     bottom: $i+px !important;
+//   }
+//   .l#{$i} {
+//     left: $i+px !important;
+//   }
+// }
+
+@for $i from 1 through 100 {
+  .h#{$i}p {
+    height: $i#{'%'} !important
+  }
+  .w#{$i}p {
+    width: $i#{'%'} !important
+  }
+  .max-h#{$i}p {
+    max-height: $i#{'%'} !important
+  }
+  .max-w#{$i}p {
+    max-width: $i#{'%'} !important
+  }
+  .t#{$i*2}p {
+    top: $i*2#{'%'} !important; 
+  }
+  .r#{$i*2}p {
+    right: $i*2#{'%'} !important;
+  }
+  .b#{$i*2}p {
+    bottom: $i*2#{'%'} !important;
+  }
+  .l#{$i*2}p {
+    left: $i*2#{'%'} !important;
+  }
+}
+@for $i from 1 through 60 {
+  .fz#{$i} {
+    font-size: $i*2+px !important;
+  }
+}
+
+//Khac
+.fss{@include flexbox(flex-start,flex-start)}.fsc{@include flexbox(flex-start,center)}.fcc{@include flexbox(center,center)}.fsp{@include flexbox(space-between,flex-start)}
+.fce {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.m0a{margin:0 auto}
+.fww {flex-wrap:wrap;}
+.df{display: flex}
+.db{display: block}
+.dn{display: none}
+.fwb{font-weight: bold;}
+.fwn{font-weight: normal;}
+.fwl{font-weight: 300;}
+.uppercase {text-transform: uppercase;}
+.por{position: relative}
+.ctboth{@include centerboth()}
+.ctver{@include centerver()}
+.cthor{@include centerhor();}
+.br100p{border-radius: 100px;}
+.row {@include flexbox(flex-start, flex-start); flex-wrap:wrap;}
+.center {text-align: center;}
+.relative {position: relative;}
+.lsp05 {letter-spacing: 0.5px;}
+.lsp1 {letter-spacing: 1px;}
+.lsp15 {letter-spacing: 1.5px;}
+.lsp2 {letter-spacing: 2px;}
+.lh0 {line-height: 0 !important;}
+.lh1 {line-height: 1 !important;}
+.lh15 {line-height: 1.5 !important;}
+.lh16 {line-height: 1.6 !important;}
+.lh17 {line-height: 1.7 !important;}
+.lh18 {line-height: 1.8 !important;}
+.lh19 {line-height: 1.9 !important;}
+.lh20 {line-height: 2.0 !important;}
+.lh22 {line-height: 2.2 !important;}
+.lh24 {line-height: 2.4 !important;}
+.lh26 {line-height: 2.6 !important;}
+.order1 {order:1}
+.order2 {order:2}
+.order3 {order:3}
+.order4 {order:4}
+.order5 {order:5}
+.order6 {order:6}
+
+.reverse {
+  [class*="col-"] {
+    &:nth-child(1) { 
+      order: 3;
+    }
+    &:nth-child(2) { 
+      order: 2;
+    }
+    &:nth-child(3) { 
+      order: 1;
+    }
+  }
+}
+@for $space from 1 through 125 {
+  $space: $space*2; 
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+    .p#{str-slice($side, 0, 1)}#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+    .p#{$space} {
+      padding: #{$space}px !important;
+    }
+    .m#{$space}{
+      margin: #{$space}px !important;
+    }
+  }
+}
+
+
+//h1 h2 h3 h4
+@mixin h1($size:36px) {
+  h1 {
+    font-size: $size;
+  }
+}
+@mixin h2($size:28px) {
+  h2 {
+    font-size: $size;
+  }
+}
+@mixin h3($size:18px) {
+  h3 {
+    font-size: $size;
+  }
+}
+@mixin h4($size:16px) {
+  h4 {
+    font-size: $size;
+  }
+}
+
+//font size //btn width
+@each $name, $thesize in $thesizes {
+  .font-#{$name} {
+    font-size: nth($thesize, 1);
+  }
+  .btn-#{$name} {
+    font-size: nth($thesize, 1);
+    width: nth($thesize, 2);
+    height: nth($thesize, 3);
+  }
+}
+
+//width
+
+@mixin bg-normal(){
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+//widthbox
+
+@for $i from 1 through 80 {
+  @if($i > 20) {
+    $i : $i*5
+  }@else {
+    $i: $i*2
+  }
+  .w100p-#{$i} {
+    width: calc(100% - #{$i}px);
+  }
+}
+
+
+//col type bootstrap
+//Flexible bootstrap columns
+// @for $i from 1 through 100 {
+//   .bcol-#{$i}-100 {
+//     width: $i#{'%'};
+//   }
+// }
+// @mixin grid-generator($size, $grid-columns) {
+// 	@for $i from 1 through $grid-columns {
+// 		.col-#{$size}-#{$i}-#{$grid-columns} {
+// 			width: percentage($i / $grid-columns);
+// 		}
+// 	}
+// }
+
+@mixin global_phuc_col($value, $margin){
+
+}
+@include global_phuc_col((4,6,20,10), 20px); 
+
+////////////////////////////////////////////////////////////////////////////////Start Media////////////////////////////////////////////////////////
+
+$cols: (4, 3, 2, 1);
+@each $device in $devices {
+  $devicetext: "define";
+  $thesizequery: ();
+  @if $device == $lg {
+    $devicetext: "lg";
+    $thesizequery: $thesizes_lg;
+  }@else if $device == $md {
+    $devicetext: "md";
+    $thesizequery: $thesizes_md;
+  }@else if $device == $tb {
+    $devicetext: "tb";
+    $thesizequery: $thesizes_tb;
+  }@else if $device == $xs {
+    $devicetext: "xs";
+    $thesizequery: $thesizes_xs;
+  }@else {
+    $devicetext: "sm";
+    $thesizequery: $thesizes_sm;
+  }
+  @media (max-width: $device+px){
+      //col-mobile
+      @each $margin in $margins {
+        @each $col in $cols {
+          @if($col == 1) {
+          
+          }@else {
+            .col-#{$col}_#{$margin}-#{$devicetext} {
+              width:calc(#{(100/$col)}% - #{$margin*($col - 1)/$col}px);
+              margin-right: $margin+px !important;
+              &:nth-child(#{$col}n) { 
+                margin-right: 0px !important;
+              }
+            }
+          }
+        }
+      }
+      [class*="col-1-#{$devicetext}"]{
+        width: 100% !important;
+        margin-right: 0!important;
+      }
+
+      //width max-width height max-height
+      // @for $i from 1 through 50 {
+      //   $i: $i*2;
+      //   .h#{$i}-#{$devicetext} {
+      //     height: $i+px !important;
+      //   }
+      //   .w#{$i}-#{$devicetext} {
+      //     height: $i+px !important;
+      //   }
+      //   .max-h#{$i}-#{$devicetext} {
+      //     max-height: $i+px !important;
+      //   }
+      //   .max-w#{$i}-#{$devicetext} {
+      //     max-height: $i+px !important;
+      //   }
+      //   .t#{$i}-#{$devicetext} {
+      //     right: $i+px !important;
+      //   }
+      //   .r#{$i}-#{$devicetext} {
+      //     right: $i+px !important;
+      //   }
+      //   .b#{$i}-#{$devicetext} {
+      //     right: $i+px !important;
+      //   }
+      //   .l#{$i}-#{$devicetext} {
+      //     right: $i+px !important;
+      //   }
+      // }
+      // @for $i from 20 through 150 {
+      //   $i: $i*5;
+      //   .h#{$i}-#{$devicetext} {
+      //     height: $i+px !important;
+      //   }
+      //   .w#{$i}-#{$devicetext} {
+      //     height: $i+px !important;
+      //   }
+      //   .max-h#{$i}-#{$devicetext} {
+      //     max-height: $i+px !important;
+      //   }
+      //   .max-w#{$i}-#{$devicetext} {
+      //     max-width: $i+px !important;
+      //   }
+      //   .t#{$i}-#{$devicetext} {
+      //     top: $i+px !important;
+      //   }
+      //   .r#{$i}-#{$devicetext} {
+      //     right: $i+px !important;
+      //   }
+      //   .b#{$i}-#{$devicetext} {
+      //     bottom: $i+px !important;
+      //   }
+      //   .l#{$i}-#{$devicetext} {
+      //     left: $i+px !important;
+      //   }
+      // }
+
+      @for $i from 1 through 100 {
+        .h#{$i}p-#{$devicetext} {
+          height: $i#{'%'} !important
+        }
+        .w#{$i}p-#{$devicetext} {
+          width: $i#{'%'} !important
+        }
+        .max-h#{$i}p-#{$devicetext} {
+          max-height: $i#{'%'} !important
+        }
+        .max-w#{$i}p-#{$devicetext} {
+          max-width: $i#{'%'} !important
+        }
+
+        .t#{$i*2}-#{$devicetext} {
+          top: $i*2#{'%'} !important;
+        }
+        .r#{$i*2}p-#{$devicetext} {
+          right: $i*2#{'%'} !important;
+        }
+        .b#{$i*2}p-#{$devicetext} {
+          bottom: $i*2#{'%'} !important;
+        }
+        .l#{$i*2}p-#{$devicetext} {
+          left: $i*2#{'%'} !important;
+        }
+      }
+      @for $i from 1 through 60 {
+        .fz#{$i}-#{$devicetext} {
+          font-size: $i+px !important;
+        }
+      }
+
+      //others
+      .m0a-#{$devicetext}{margin:0 auto}
+      .fww-#{$devicetext} {flex-wrap:wrap;}
+      .df-#{$devicetext}{display: flex}
+      .db-#{$devicetext}{display: block}
+      .dn-#{$devicetext}{display: none}
+      .fwb-#{$devicetext}{font-weight: bold;}
+      .fwn-#{$devicetext}{font-weight: normal;}
+      .fwl-#{$devicetext}{font-weight: 300;}
+      .uppercase-#{$devicetext} {text-transform: uppercase;}
+      .por-#{$devicetext}{position: relative}
+      .po-#{$devicetext} {position:absolute;}
+      .ctboth-#{$devicetext}{@include centerboth()}
+      .ctver-#{$devicetext}{@include centerver()}
+      .cthor-#{$devicetext}{@include centerhor();}
+      .row-#{$devicetext} {@include flexbox(flex-start, flex-start); flex-wrap:wrap;}
+      .center-#{$devicetext} {text-align: center;}
+      .relative-#{$devicetext} {position: relative;}
+      .reverse-#{$devicetext} {
+        [class*="col-"] {
+          &:nth-child(1) { 
+            order: 1;
+          }
+          &:nth-child(2) { 
+            order: 2;
+          }
+          &:nth-child(3) { 
+            order: 3;
+          }
+        }
+      }
+
+      .order1-#{$devicetext} {order:1}
+      .order2-#{$devicetext} {order:2}
+      .order3-#{$devicetext} {order:3}
+      .order4-#{$devicetext} {order:4}
+      .order5-#{$devicetext} {order:5}
+      .order6-#{$devicetext} {order:6}
+
+      
+      @for $space from 1 through 125 {
+        $space: $space*2; 
+        @each $side in $sides {
+          .m#{str-slice($side, 0, 1)}#{$space}-#{$devicetext} {
+            margin-#{$side}: #{$space}px !important;
+          }
+          .p#{str-slice($side, 0, 1)}#{$space}-#{$devicetext} {
+            padding-#{$side}: #{$space}px !important;
+          }
+          .p#{$space}-#{$devicetext} {
+            padding: #{$space}px !important;
+          }
+          .m#{$space}-#{$devicetext} {
+            padding: #{$space}px !important;
+          }
+        }
+
+      }
+
+      @for $i from 1 through 80 {
+        @if($i > 20) {
+          $i : $i+5;
+        }@else {
+          $i: $i*2
+        }
+        .w100p-#{$i}-#{$devicetext} {
+          width: calc(100% - #{$i}px);
+        }
+      }
+
+      .lsp05-#{$devicetext} {letter-spacing: 0.5px;}
+      .lsp1-#{$devicetext} {letter-spacing: 1px;}
+      .lsp15-#{$devicetext} {letter-spacing: 1.5px;}
+      .lsp2-#{$devicetext} {letter-spacing: 2px;}
+
+      .lh0-#{$devicetext} {line-height: 0 !important;}
+      .lh1-#{$devicetext} {line-height: 1 !important;}
+      .lh15-#{$devicetext} {line-height: 1.5 !important;}
+      .lh16-#{$devicetext} {line-height: 1.6 !important;}
+      .lh17-#{$devicetext} {line-height: 1.7 !important;}
+      .lh18-#{$devicetext} {line-height: 1.8 !important;}
+      .lh19-#{$devicetext} {line-height: 1.9 !important;}
+      .lh20-#{$devicetext} {line-height: 2.0 !important;}
+      .lh22-#{$devicetext} {line-height: 2.2 !important;}
+      .lh24-#{$devicetext} {line-height: 2.4 !important;}
+      .lh26-#{$devicetext} {line-height: 2.6 !important;}
+
+      @each $name, $thesize in $thesizequery {
+        .font-#{$name}-#{$devicetext} {
+          font-size: nth($thesize, 1);
+        }
+        .btn-#{$name}-#{$devicetext} {
+          font-size: nth($thesize, 1);
+          width: nth($thesize, 2);
+          height: nth($thesize, 3);
+        }
+      }
+  } 
+}
+
+
+[class*='hover-type'] {
+  opacity: 1;
+  -webkit-transition: opacity 1s,-webkit-transform 1s;
+  transition: opacity 1s,-webkit-transform 1s;
+  transition: opacity 1s,transform 1s;
+  transition: opacity 1s,transform 1s,-webkit-transform 1s;
+}
+
+.hover-type-zoomin {
+  &:hover {
+    opacity: .9;
+    -webkit-transform: scale3d(1.1,1.1,1);
+    transform: scale3d(1.1,1.1,1);
+  }
+}
+
+input[type="text"], input[type="name"], input[type="number"], input[type="email"] {
+  height: 42px;
+  border: 1px solid #ddd;
+  padding-left:7px;
+  border-radius: 4px;
+}
+textarea { 
+  min-height: 100px;
+  padding-left:7px;
+  padding-top: 7px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+input, textarea {
+  @include placeholder { 
+    color: #999;
+    @include pt_sans;
+  }
+}
+
+
+.page_top {
+  position: fixed;
+  right: 20px;
+  z-index: 99;
+  bottom:20px;
+}
+
+
+
+
+//@include grid-generator("md", 12);
+
+// @mixin respond-from($media) {
+// 	@if $media == xs {
+// 		@media (max-width: 0px)  { @content; }
+// 	} @else if $media == sm {
+// 		@media (max-width: 768px) { @content; }
+// 	} @else if $media == md {
+// 		@media (max-width: 1200) { @content; }
+// 	} @else if $media == lg {
+// 		@media (max-width: 1440) { @content; }
+// 	} @else if $media == xl {
+// 		@media (max-width: 5000) { @content; }
+// 	}
+// }
+// @include grid-generator(xs, 12);
+
+// @include respond-from(sm) {
+// 	@include grid-generator(sm, 12);
+// }
+
+// @include respond-from(md) {
+// 	@include grid-generator(md, 12);
+// }
+
+// @include respond-from(lg) {
+// 	@include grid-generator(lg, 12);
+// }
+
+// @include respond-from(xl) {
+// 	@include grid-generator(xl, 10);
+// 	@include grid-generator(xl, 12);
+// } 
